@@ -1,13 +1,30 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import myContext from "../TodoContext";
 
 const Collections = () => {
-  const {collections, setCollections} = useContext(myContext)
+  const { collections, activeCollection, setActiveCollection } =
+    useContext(myContext);
+
   return (
     <div>
-      {collections.map((collection) => (
-        <div>{collection}</div>
-      ))}
+      <ul>
+        {collections.map((collection) => (
+          <li
+            key={collection.id}
+            onClick={() => {
+              setActiveCollection(collection);
+            }}
+            className={`my-3 p-2 cursor-pointer flex justify-between items-center rounded ${
+              collection.id === activeCollection.id
+                ? "bg-orange-200 text-orange-900 hover:bg-orange-300"
+                : "hover:bg-gray-200"
+            }`}
+          >
+            <p className="font-medium">{collection.name}</p>
+            <p className="">{collection.todos.length}</p>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

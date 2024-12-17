@@ -1,10 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { IoIosAddCircle } from "react-icons/io";
 import Collections from "./Collections";
+import myContext from "../TodoContext";
+import { v4 as uuidv4 } from 'uuid';
 
 const SideBar = () => {
   const [showInput, setShowInput] = useState(false);
-  
+  const { collections, setCollections } = useContext(myContext);
+  const [collectionName, setCollectionName] = useState("");
+
+  const AddCollections = () => {
+    const updatedcollections = [...collections,{id:uuidv4(), name: collectionName, todos : []}]
+    setCollections(updatedcollections)
+  };
   return (
     <div className="w-1/4 bg-gray-50 shadow-lg p-4">
       <button
@@ -22,8 +30,17 @@ const SideBar = () => {
             type="text"
             className="p-2 border border-gray-300 rounded mb-2"
             placeholder="enter collection name...."
+            onChange={(e) => {
+                setCollectionName(e.target.value);
+              }}
           />
-          <button className="bg-orange-400 p-2 text-white rounded">Add</button>
+          <button
+            className="bg-orange-400 p-2 text-white rounded"
+            onClick={AddCollections}
+            
+          >
+            Add
+          </button>
         </div>
       ) : (
         <></>
