@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 const TodoBox = () => {
   const [todo, setTodo] = useState("");
   const [dueDate, setDueDate] = useState("");
+  const [startDate, setStartDate] = useState("")
   const { collections, setCollections, activeCollection, setActiveCollection } =
     useContext(myContext);
 
@@ -14,7 +15,7 @@ const TodoBox = () => {
         if (col.id === activeCollection.id) {
           return {
             ...col,
-            todos: [...col.todos, { id: uuidv4(), name: todo, dueDate }],
+            todos: [...col.todos, { id: uuidv4(), name: todo, start : startDate, end: dueDate }],
           };
         }
         return col;
@@ -42,6 +43,12 @@ const TodoBox = () => {
         placeholder="Enter the todo..."
         value={todo}
         onChange={(e) => setTodo(e.target.value)}
+      />
+      <input
+        className="p-2 border border-gray-300 rounded"
+        type="date"
+        value={startDate}
+        onChange={(e) => setStartDate(e.target.value)}
       />
       <input
         className="p-2 border border-gray-300 rounded"
