@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaChevronDown } from 'react-icons/fa'; // Importing the icon
+import myContext from '../../TodoContext';
 
-const DropDown = () => {
+const DropDown = ({handleDropDown}) => {
+    
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("todo")
 
@@ -10,6 +12,7 @@ const DropDown = () => {
   };
   const handleDropDownClick = (option) => {
     setSelectedOption(option)
+    handleDropDown(option)
     setIsOpen(!isOpen)
 
   }

@@ -16,7 +16,7 @@ const Collections = () => {
             }}
             className={`my-3 p-2 cursor-pointer flex justify-between items-center rounded ${
               collection.id === activeCollection.id
-                ? "bg-orange-200 text-orange-900 hover:bg-orange-300"
+                ? "bg-blue-100 hover:bg-blue-300"
                 : "hover:bg-gray-200"
             }`}
           >

@@ -1,59 +1,32 @@
 import React, { useContext, useState } from "react";
 import myContext from "../TodoContext";
-import TodoBox from "./TodoBox";
-import { MdDelete, MdEdit } from "react-icons/md";
-
-import TodoCard from "./Todo/todoCard";
 import AddTodo from "./Todo/AddTodo";
+import Sections from "./Sections";
 
 const TodoPage = () => {
   const { activeCollection, collections, setCollections, setActiveCollection } =
     useContext(myContext);
-  const [isModalOpen, setisModalOpen] = useState(false);
-
-  const deleteTodo = (todoId) => {
-    const updatedCollections = collections.map((col) => {
-      if (col.id === activeCollection.id) {
-        return {
-          ...col,
-          todos: col.todos.filter((todo) => todo.id !== todoId),
-        };
-      }
-      return col;
-    });
-
-    const updatedActiveCollection = updatedCollections.find(
-      (col) => col.id === activeCollection.id
-    );
-
-    setActiveCollection(updatedActiveCollection);
-    setCollections(updatedCollections);
-  };
 
   return (
     <div className="w-3/4 p-4">
       {activeCollection ? (
-        <div className="flex flex-col justify-center items-center">
-          <h2 className="text-xl font-semibold mb-4">
+        <div className="flex flex-col">
+          <h2 className="text-2xl font-semibold mb-6 ">
             {activeCollection.name}
           </h2>
           <AddTodo />
-          <div className="mt-4 ml-2 w-full flex">
-            <div className="w-1/3">
-              {activeCollection.todos && activeCollection.todos.length > 0 ? (
-                activeCollection.todos.map((todo) => <TodoCard todo={todo} />)
-              ) : (
-                <p className="text-gray-500">No todos in this collection.</p>
-              )}
-            </div>
+          <div className="flex justify-between gap-x-4 mt-6 w-full">
+            <Sections name="To Do" theme="bg-blue-300" textColor="text-blue-700"  />
+            <Sections name="In Progress" theme="bg-pink-100" textColor="text-pink-400" />
+            <Sections name="In Review" theme="bg-blue-100" textColor="text-blue-300" />
+            <Sections name="Completed" theme="bg-green-100" textColor="text-green-400" />
           </div>
         </div>
       ) : (
-        <p className="text-gray-500">
+        <p className="text-gray-500 text-center mt-10">
           Please select a collection to view todos.
         </p>
       )}
-      
     </div>
   );
 };

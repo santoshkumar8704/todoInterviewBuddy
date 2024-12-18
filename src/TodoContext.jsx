@@ -3,6 +3,7 @@ const myContext = createContext();
 export const MyContextProvider = ({ children }) => {
   const [collections, setCollections] = useState([]);
   const [activeCollection, setActiveCollection] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(true);
   return (
     <myContext.Provider
       value={{
@@ -10,6 +11,8 @@ export const MyContextProvider = ({ children }) => {
         setCollections,
         activeCollection,
         setActiveCollection,
+        isModalOpen,
+        setIsModalOpen,
       }}
     >
       {children}

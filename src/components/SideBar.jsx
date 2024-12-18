@@ -16,15 +16,14 @@ const SideBar = () => {
     setCollectionName("")
   };
   return (
-    <div className="w-1/4 bg-gray-50 shadow-lg p-4">
+    <div className="w-1/5 bg-gray-50 shadow-lg p-4">
       <button
-        className="text-orange-500 flex items-center gap-1"
+        className="text-blue-500 flex items-center gap-1"
         onClick={() => {
           setShowInput((prev) => !prev);
         }}
       >
-        <IoIosAddCircle className="text-2xl" />
-        <h2 className="text-base font-medium">Add collection</h2>
+        <h2 className="text-base font-medium">+ Add new projects</h2>
       </button>
       {showInput ? (
         <div className="mt-3 flex items-center gap-8">
@@ -38,7 +37,7 @@ const SideBar = () => {
               }}
           />
           <button
-            className="bg-orange-400 p-2 text-white rounded"
+            className="bg-blue-400 p-2 text-white rounded"
             onClick={AddCollections}
             
           >
