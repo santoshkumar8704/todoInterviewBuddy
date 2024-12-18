@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { FaCircle } from "react-icons/fa";
 import myContext from "../TodoContext";
-import TodoCard from "./Todo/todoCard";
+import TodoCard from "./Todo/TodoCard";
 
 const Sections = ({ name, theme, textColor }) => {
   const {
