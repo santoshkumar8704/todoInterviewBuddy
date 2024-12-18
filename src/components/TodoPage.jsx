@@ -1,24 +1,32 @@
-import React from "react";
+import React, { useContext } from "react";
+import myContext from "../TodoContext";
+import TodoBox from "./TodoBox";
 
 const TodoPage = () => {
+  const { activeCollection } = useContext(myContext);
+
   return (
     <div className="w-3/4 p-4">
-      <h2>Active collection Name</h2>
-      <div className="flex space-x-2 mb-4">
-        <input
-          className="flex-1 p-2 border border-gray-300 rounded"
-          type="text"
-          placeholder="enter the todo..."
-        />
-        <input
-          className="p-2 border border-gray-300 rounded"
-          type="date"
-          placeholder="pick the date.."
-        />
-        <button className="bg-orange-500 text-white p-2 rounded hover:bg-orange-600 shadow-lg">
-          Add
-        </button>
-      </div>
+      {activeCollection ? (
+        <div className="flex flex-col justify-center items-center">
+          <h2 className="text-xl font-semibold mb-4">{activeCollection.name}</h2>
+          <TodoBox />
+          <div className="mt-4 w-full">
+            {console.log(activeCollection.todos)}
+            {activeCollection.todos.map((todo) => (
+              <div
+                key={todo.id}
+                className="flex justify-between items-center p-2 border border-gray-300 rounded mb-2 shadow"
+              >
+                <p>{todo.name}</p>
+                <p className="text-gray-500">{todo.dueDate}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <p className="text-gray-500">Please select a collection to view todos.</p>
+      )}
     </div>
   );
 };
