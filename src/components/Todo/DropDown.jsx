@@ -33,9 +33,9 @@ const DropDown = ({handleDropDown}) => {
             <button
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
               role="menuitem"
-              onClick={() => {handleDropDownClick("todo")}}
+              onClick={() => {handleDropDownClick("to do")}}
             >
-              todo
+              to do
             </button>
             <button
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"

@@ -20,7 +20,7 @@ const SideBar = () => {
     setCollectionName("");
   };
   return (
-    <div className=" bg-gray-50 shadow-lg p-4 w-1/6">
+    <div className=" bg-gray-50 shadow-lg p-4 w-1/6 max-md:w-1/3">
       <div className="flex mb-6">
         <FaTasks className="text-xl text-blue-500" />
         <h2 className="font-bold ml-3">Task boards</h2>
@@ -36,10 +36,10 @@ const SideBar = () => {
         <h2 className="text-base font-medium">+ Add new projects</h2>
       </button>
       {showInput ? (
-        <div className="mt-3 flex items-center gap-8">
+        <div className="mt-3  ">
           <input
             type="text"
-            className="p-2 border border-gray-300 rounded mb-2"
+            className="p-2 border border-gray-300 rounded mb-2 w-full"
             placeholder="enter collection name...."
             value={collectionName}
             onChange={(e) => {
@@ -47,7 +47,7 @@ const SideBar = () => {
             }}
           />
           <button
-            className="bg-blue-400 p-2 text-white rounded"
+            className="bg-blue-400 p-2 text-white rounded w-full"
             onClick={AddCollections}
           >
             Add

@@ -36,7 +36,7 @@ const TodoBox = () => {
   };
 
   return (
-    <div className="flex space-x-2 mb-4 w-5/6">
+    <div className="flex space-x-2 mb-4 w-5/6 ">
       <input
         className="flex-1 p-2 border border-gray-300 outline-none rounded"
         type="text"

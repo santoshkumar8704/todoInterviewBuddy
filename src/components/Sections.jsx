@@ -5,12 +5,11 @@ import TodoCard from "./Todo/todoCard";
 
 const Sections = ({ name, theme, textColor }) => {
   const {
-    collections,
-    setCollections,
     activeCollection,
     isModalOpen,
     setIsModalOpen,
   } = useContext(myContext);
+
   const handleNewTask = () => {
     setIsModalOpen(!isModalOpen);
   };
@@ -20,32 +19,36 @@ const Sections = ({ name, theme, textColor }) => {
   );
 
   return (
-    <div>
-      <div>
+    <div className="border-r-2 px-4 py-6 space-y-6 sm:space-y-4 text-sm max-lg:text-xs">
+     
+      <div className="flex items-center justify-between ">
         <span
-          className={`${theme} text-xs py-2 px-4 rounded-2xl ${textColor} inline-flex items-center gap-x-2`}
+          className={`${theme} py-2 px-4 rounded-2xl ${textColor} flex items-center gap-2`}
         >
           <FaCircle className="text-[8px]" />
-          <h4 className="font-medium text-xs">{name}</h4>
+          <h4 className="font-medium text-sm md:text-base">{name}</h4>
         </span>
       </div>
+
+      
       <button
         onClick={handleNewTask}
-        className={`${theme} ${textColor} my-4 px-4 rounded-2xl w-full`}
+        className={`${theme} ${textColor} px-4 py-2 rounded-xl w-full flex items-center justify-center text-sm font-medium hover:opacity-90`}
       >
-        + Add new Task
+        + Add New Task
       </button>
 
-      {filteredTodos.map((todo) => {
-        return (
+      
+      <div className="space-y-4">
+        {filteredTodos.map((todo) => (
           <TodoCard
             key={todo.id}
             todo={todo}
             theme={theme}
             textColor={textColor}
           />
-        );
-      })}
+        ))}
+      </div>
     </div>
   );
 };
