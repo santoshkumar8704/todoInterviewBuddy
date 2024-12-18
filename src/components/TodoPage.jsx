@@ -16,7 +16,7 @@ const TodoPage = () => {
           </h2>
           <AddTodo />
           <div className="flex justify-between gap-x-4 mt-6 w-full">
-            <Sections name="To Do" theme="bg-blue-300" textColor="text-blue-700"  />
+            <Sections name="To Do" theme="bg-blue-200" textColor="text-blue-700"  />
             <Sections name="In Progress" theme="bg-pink-100" textColor="text-pink-400" />
             <Sections name="In Review" theme="bg-blue-100" textColor="text-blue-300" />
             <Sections name="Completed" theme="bg-green-100" textColor="text-green-400" />

@@ -15,6 +15,9 @@ const AddTodo = () => {
   const handleDrop = (option) => {
     setSelectedDropDown(option);
   };
+  const handleCancel = () => {
+    setIsModalOpen(!isModalOpen)
+  }
 
   const handleSave = () => {
     if (todo && dueDate && activeCollection) {
@@ -48,7 +51,7 @@ const AddTodo = () => {
   
   if (!isModalOpen) return null
   return (
-    <div className="inset-0 fixed bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center ">
+    <div className="inset-0 fixed bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center z-50 ">
       <div className="w-[700px] flex flex-col bg-white border border-gray-400 rounded-xl justify-center p-4 px-6 ">
         <h1 className="text-blue-600 m-2">Add new task</h1>
         <hr className="border-t-2 border-gray-300 my-2" />
@@ -86,7 +89,7 @@ const AddTodo = () => {
         <hr className="border-t-2 border-gray-300 my-2" />
 
         <div className="flex justify-end space-x-4">
-          <button className="px-4 bg-blue-500 bg-opacity-30 rounded-lg text-blue-600">
+          <button onClick={handleCancel} className="px-4 bg-blue-500 bg-opacity-30 rounded-lg text-blue-600">
             cancel
           </button>
           <button

@@ -1,19 +1,19 @@
 import React from 'react';
 
-const TodoCard = ({ todo }) => {
+const TodoCard = ({ todo, theme, textcolor }) => {
   return (
-    <div className="bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow duration-300">
-      <h3 className="text-xl font-bold text-gray-800 mb-4">{todo.name}</h3>
-      <div className="flex justify-between">
+    <div className="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition-shadow duration-300 transform hover:scale-105 ease-in-out mb-3">
+      <h3 className="text-xl font-semibold text-gray-800 mb-4">{todo.name}</h3>
+      <div className="flex justify-between items-center text-sm w-full gap-6">
         <div className="text-center">
-          <h4 className="text-gray-600 font-semibold">Start Date</h4>
-          <span className="bg-purple-100 bg-opacity-50 text-purple-700 px-3 py-1 rounded-md text-sm">
+          <h4 className="text-gray-600 font-semibold mb-2">Start Date</h4>
+          <span className={`${theme} ${textcolor} py-1 px-3 rounded-md`}>
             {todo.start}
           </span>
         </div>
         <div className="text-center">
-          <h4 className="text-gray-600 font-semibold">Deadline</h4>
-          <span className="bg-red-100 bg-opacity-50 text-red-700 px-3 py-1 rounded-md text-sm">
+          <h4 className="text-gray-600 font-semibold mb-2">Deadline</h4>
+          <span className={`${theme} ${textcolor} py-1 px-3 rounded-md`}>
             {todo.end}
           </span>
         </div>
