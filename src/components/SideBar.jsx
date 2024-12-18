@@ -12,6 +12,8 @@ const SideBar = () => {
   const AddCollections = () => {
     const updatedcollections = [...collections,{id:uuidv4(), name: collectionName, todos : []}]
     setCollections(updatedcollections)
+    setShowInput(false)
+    setCollectionName("")
   };
   return (
     <div className="w-1/4 bg-gray-50 shadow-lg p-4">
@@ -30,6 +32,7 @@ const SideBar = () => {
             type="text"
             className="p-2 border border-gray-300 rounded mb-2"
             placeholder="enter collection name...."
+            value={collectionName}
             onChange={(e) => {
                 setCollectionName(e.target.value);
               }}
