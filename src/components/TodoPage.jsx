@@ -15,10 +15,10 @@ const TodoPage = () => {
           <h2 className="text-lg font-semibold ">
             {activeCollection.name}
           </h2>
-          <hr className="border-t-2 border-gray-200 my-4 w-full" />
+          <hr className="border-t-2 border-gray-200 mt-4 mb-2 w-full" />
           <AddTodo />
           <EditTodo />
-          <div className="flex justify-between gap-x-4 mt-6 w-full max-md:flex-col">
+          <div className="flex justify-between gap-x-4 mt-2 w-full max-md:flex-col">
             <Sections name="To Do" theme="bg-blue-100" textColor="text-[#3659E2]"  />
             <Sections name="In Progress" theme="bg-pink-100" textColor="text-pink-400" />
             <Sections name="In Review" theme="bg-[#ECF6FC]" textColor="text-[#3FA1E3]" />
