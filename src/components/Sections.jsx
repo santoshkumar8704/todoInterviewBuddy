@@ -19,7 +19,7 @@ const Sections = ({ name, theme, textColor }) => {
   );
 
   return (
-    <div className="border-r-2 px-4 py-6 space-y-6 sm:space-y-4 text-sm max-lg:text-xs">
+    <div className=" px-4 py-6 space-y-6 sm:space-y-4 text-sm max-lg:text-xs">
      
       <div className="flex items-center justify-between ">
         <span
@@ -39,7 +39,7 @@ const Sections = ({ name, theme, textColor }) => {
       </button>
 
       
-      <div className="space-y-4">
+      <div className="space-y-4 pr-6 border-r-2">
         {filteredTodos.map((todo) => (
           <TodoCard
             key={todo.id}

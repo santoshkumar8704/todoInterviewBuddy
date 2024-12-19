@@ -39,7 +39,7 @@ const SideBar = () => {
         <div className="mt-3  ">
           <input
             type="text"
-            className="p-2 border border-gray-300 rounded mb-2 w-full"
+            className="p-2 border border-gray-300 rounded mb-2 w-full focus:outline-none"
             placeholder="enter collection name...."
             value={collectionName}
             onChange={(e) => {
