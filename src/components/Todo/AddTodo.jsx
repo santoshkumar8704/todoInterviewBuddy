@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import DropDown from "./DropDown";
 import myContext from "../../TodoContext";
 import { v4 as uuidv4 } from "uuid";
@@ -8,6 +8,7 @@ const AddTodo = () => {
   const [dueDate, setDueDate] = useState("");
   const [startDate, setStartDate] = useState("");
   const [selectedDropDown, setSelectedDropDown] = useState("");
+  const [animateModal, setAnimateModal] = useState(false);
 
   const {
     collections,
@@ -23,7 +24,8 @@ const AddTodo = () => {
   };
 
   const handleCancel = () => {
-    setIsModalOpen(!isModalOpen);
+    setAnimateModal(false); // Start closing animation
+    setTimeout(() => setIsModalOpen(false), 300); // Match the animation duration
   };
 
   const handleSave = () => {
@@ -56,17 +58,26 @@ const AddTodo = () => {
 
       setTodo("");
       setDueDate("");
-      setIsModalOpen(!isModalOpen);
+      setAnimateModal(false); // Start closing animation
+      setTimeout(() => setIsModalOpen(false), 300); // Match the animation duration
     } else {
       alert("Please fill out all fields and select a collection!");
     }
   };
 
+  useEffect(() => {
+    if (isModalOpen) setAnimateModal(true); 
+  }, [isModalOpen]);
+
   if (!isModalOpen) return null;
 
   return (
     <div className="inset-0 fixed bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center z-50">
-      <div className="sm:w-[90%] md:w-[700px] flex flex-col bg-white border border-gray-400 rounded-xl p-4 md:px-6">
+      <div
+        className={`sm:w-[90%] md:w-[700px] flex flex-col bg-white border border-gray-400 rounded-xl p-4 md:px-6 transition-all ease-in-out duration-300 transform ${
+          animateModal ? "opacity-100 scale-100" : "opacity-0 scale-95"
+        }`}
+      >
         <h1 className="text-blue-600 m-2 text-lg md:text-xl">Add New Task</h1>
         <hr className="border-t-2 border-gray-300 my-2" />
         <div>

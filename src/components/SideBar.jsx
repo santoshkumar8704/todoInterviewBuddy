@@ -24,7 +24,6 @@ const SideBar = () => {
       <div className="flex mb-6">
         <FaTasks className="text-xl text-blue-500" />
         <h2 className="font-bold ml-3">Task boards</h2>
-        
       </div>
       <hr className="border-t-2 border-gray-200 my-4 w-full" />
       <button
@@ -35,27 +34,29 @@ const SideBar = () => {
       >
         <h2 className="text-base font-medium">+ Add new projects</h2>
       </button>
-      {showInput ? (
-        <div className="mt-3  ">
-          <input
-            type="text"
-            className="p-2 border border-gray-300 rounded mb-2 w-full focus:outline-none"
-            placeholder="enter collection name...."
-            value={collectionName}
-            onChange={(e) => {
-              setCollectionName(e.target.value);
-            }}
-          />
-          <button
-            className="bg-blue-400 p-2 text-white rounded w-full"
-            onClick={AddCollections}
-          >
-            Add
-          </button>
-        </div>
-      ) : (
-        <></>
-      )}
+
+      <div
+        className={`mt-3 overflow-hidden transition-all duration-500 ease-in-out ${
+          showInput ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <input
+          type="text"
+          className="p-2 border border-gray-300 rounded mb-2 w-full focus:outline-none"
+          placeholder="enter collection name...."
+          value={collectionName}
+          onChange={(e) => {
+            setCollectionName(e.target.value);
+          }}
+        />
+        <button
+          className="bg-blue-400 p-2 text-white rounded w-full"
+          onClick={AddCollections}
+        >
+          Add
+        </button>
+      </div>
+
       <h2 className="p-1 text-gray-600 font-semibold text-xl mt-4">
         My Collections
       </h2>

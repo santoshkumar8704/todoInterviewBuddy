@@ -21,7 +21,7 @@ const TodoPage = () => {
           <div className="flex justify-between gap-x-4 mt-2 w-full max-md:flex-col">
             <Sections name="To Do" theme="bg-blue-100" textColor="text-[#3659E2]"  />
             <Sections name="In Progress" theme="bg-pink-100" textColor="text-pink-400" />
-            <Sections name="In Review" theme="bg-[#ECF6FC]" textColor="text-[#3FA1E3]" />
+            <Sections name="In Review" theme="bg-blue-100" textColor="text-blue-300" />
             <Sections name="Completed" theme="bg-green-100" textColor="text-green-400" />
           </div>
         </div>
