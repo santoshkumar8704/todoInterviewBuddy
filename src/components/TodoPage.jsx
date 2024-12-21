@@ -9,7 +9,7 @@ const TodoPage = () => {
     useContext(myContext);
 
   return (
-    <div className="w-5/6 p-6 max-md:w-2/3">
+    <div className="w-5/6 p-2 max-md:w-2/3">
       {activeCollection ? (
         <div className="flex flex-col">
           <h2 className="text-lg font-semibold ">
@@ -17,9 +17,9 @@ const TodoPage = () => {
           </h2>
           <hr className="border-t-2 border-gray-200 mt-4 mb-2 w-full" />
           <AddTodo />
-          <EditTodo />
-          <div className="flex justify-between gap-x-4 mt-2 w-full max-md:flex-col">
-            <Sections name="To Do" theme="bg-blue-100" textColor="text-[#3659E2]"  />
+          
+          <div className="flex gap-x-4 justify-evenly mt-4 max-lg:flex-col">
+            <Sections name="To Do" theme="bg-indigo-100" textColor="text-[#3659E2]"  />
             <Sections name="In Progress" theme="bg-pink-100" textColor="text-pink-400" />
             <Sections name="In Review" theme="bg-blue-100" textColor="text-blue-300" />
             <Sections name="Completed" theme="bg-green-100" textColor="text-green-400" />

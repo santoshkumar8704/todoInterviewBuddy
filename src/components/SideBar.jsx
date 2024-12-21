@@ -19,38 +19,39 @@ const SideBar = () => {
     setShowInput(false);
     setCollectionName("");
   };
+
   return (
-    <div className=" bg-gray-50 shadow-lg p-4 w-1/6 max-md:w-1/3">
-      <div className="flex mb-6">
+    <div className="bg-gray-50 shadow-lg p-4 w-1/6 max-lg:w-1/3 ">
+      <div className="flex mb-2">
         <FaTasks className="text-xl text-blue-500" />
-        <h2 className="font-bold ml-3">Task boards</h2>
+        <h2 className="font-bold ml-3">Task Boards</h2>
       </div>
       <hr className="border-t-2 border-gray-200 my-4 w-full" />
       <button
-        className="text-blue-500 flex items-center gap-1"
+        className="text-blue-500 flex items-center py-1 px-2 rounded-md gap-1 transition ease-in-out duration-500 hover:bg-gray-200"
         onClick={() => {
           setShowInput((prev) => !prev);
         }}
       >
-        <h2 className="text-base font-medium">+ Add new projects</h2>
+        <h2 className="text-sm font-semibold">+ Add new Project</h2>
       </button>
 
       <div
-        className={`mt-3 overflow-hidden transition-all duration-500 ease-in-out ${
+        className={`mt-3 overflow-hidden transition-all duration-700 ease-in-out ${
           showInput ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <input
           type="text"
           className="p-2 border border-gray-300 rounded mb-2 w-full focus:outline-none"
-          placeholder="enter collection name...."
+          placeholder="Enter collection name..."
           value={collectionName}
           onChange={(e) => {
             setCollectionName(e.target.value);
           }}
         />
         <button
-          className="bg-blue-400 p-2 text-white rounded w-full"
+          className="bg-blue-400 p-2 text-white rounded w-full transition-all duration-500 ease-in-out hover:bg-blue-700"
           onClick={AddCollections}
         >
           Add

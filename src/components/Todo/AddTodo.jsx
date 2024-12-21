@@ -9,6 +9,10 @@ const AddTodo = () => {
   const [startDate, setStartDate] = useState("");
   const [selectedDropDown, setSelectedDropDown] = useState("");
   const [animateModal, setAnimateModal] = useState(false);
+  const [nameError, setNameError] = useState(false);
+  const [startError, setStartError] = useState(false);
+  const [endError, setEndError] = useState(false);
+  const [categoryError, setCategoryError] = useState(false);
 
   const {
     collections,
@@ -24,8 +28,15 @@ const AddTodo = () => {
   };
 
   const handleCancel = () => {
+    setTodo("");
+    setStartDate("");
+    setDueDate("");
+    setNameError(false)
+    setStartError(false)
+    setEndError(false)
+    setCategoryError(false)
     setAnimateModal(false); // Start closing animation
-    setTimeout(() => setIsModalOpen(false), 300); // Match the animation duration
+    setTimeout(() => setIsModalOpen(false), 500); // Match the animation duration
   };
 
   const handleSave = () => {
@@ -57,16 +68,19 @@ const AddTodo = () => {
       setActiveCollection(updatedActiveCollection);
 
       setTodo("");
+      setStartDate("");
       setDueDate("");
       setAnimateModal(false); // Start closing animation
-      setTimeout(() => setIsModalOpen(false), 300); // Match the animation duration
+      setTimeout(() => setIsModalOpen(false), 500); // Match the animation duration
     } else {
-      alert("Please fill out all fields and select a collection!");
+      setNameError(!todo);
+      setStartError(!startDate);
+      setEndError(!dueDate);
     }
   };
 
   useEffect(() => {
-    if (isModalOpen) setAnimateModal(true); 
+    if (isModalOpen) setAnimateModal(true);
   }, [isModalOpen]);
 
   if (!isModalOpen) return null;
@@ -74,8 +88,8 @@ const AddTodo = () => {
   return (
     <div className="inset-0 fixed bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center z-50">
       <div
-        className={`sm:w-[90%] md:w-[700px] flex flex-col bg-white border border-gray-400 rounded-xl p-4 md:px-6 transition-all ease-in-out duration-300 transform ${
-          animateModal ? "opacity-100 scale-100" : "opacity-0 scale-95"
+        className={`sm:w-[90%] md:w-[700px] flex flex-col bg-white border border-gray-400 rounded-xl p-4 md:px-6 transition-all ease-in-out duration-500 transform ${
+          animateModal ? "opacity-100 scale-100" : "opacity-0 scale-50"
         }`}
       >
         <h1 className="text-blue-600 m-2 text-lg md:text-xl">Add New Task</h1>
@@ -86,8 +100,12 @@ const AddTodo = () => {
             type="text"
             className="border rounded border-gray-300 focus:outline-none w-full m-2 p-2 text-sm md:text-base"
             placeholder="Text"
+            value={todo}
             onChange={(e) => setTodo(e.target.value)}
           />
+          {nameError && (
+            <h4 className="text-red-500 ml-3">Please fill the taskname</h4>
+          )}
         </div>
         <div className="flex flex-wrap justify-between gap-4">
           <div>
@@ -95,16 +113,28 @@ const AddTodo = () => {
             <input
               className="w-full md:w-60 h-12 border border-gray-300 rounded-lg px-4 text-sm"
               type="date"
+              value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
             />
+            {startError && (
+              <h4 className="text-red-500 ml-3  mt-2">
+                Please fill the startDate
+              </h4>
+            )}
           </div>
           <div>
             <h4 className="my-3 text-sm md:text-base">End Date</h4>
             <input
               className="w-full md:w-60 h-12 border border-gray-300 rounded-lg px-4 text-sm"
               type="date"
+              value={dueDate}
               onChange={(e) => setDueDate(e.target.value)}
             />
+            {endError && (
+              <h4 className="text-red-500 ml-3  mt-2">
+                Please fill the endDate
+              </h4>
+            )}
           </div>
         </div>
         <div className="w-full my-3">

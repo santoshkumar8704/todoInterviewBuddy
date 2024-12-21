@@ -1,13 +1,16 @@
 import React, { useContext, useState } from "react";
 import DropDown from "./DropDown";
 import myContext from "../../TodoContext";
-import { v4 as uuidv4 } from "uuid";
 
-const EditTodo = ({name,start,end,category}) => {
-  const [todo, setTodo] = useState(name);
-  const [dueDate, setDueDate] = useState(end);
-  const [startDate, setStartDate] = useState(start);
-  const [selectedDropDown, setSelectedDropDown] = useState(category);
+const EditTodo = ({ todoinfo }) => {
+  const [todo, setTodo] = useState(todoinfo.name);
+  const [dueDate, setDueDate] = useState(todoinfo.end);
+  const [startDate, setStartDate] = useState(todoinfo.start);
+  const [selectedDropDown, setSelectedDropDown] = useState(todoinfo.category);
+  const [nameError,setNameError] = useState(false)
+  const [startError,setStartError] = useState(false)
+  const [endError,setEndError] = useState(false)
+  const [categoryError,setCategoryError] = useState(false)
 
   const {
     collections,
@@ -23,47 +26,44 @@ const EditTodo = ({name,start,end,category}) => {
   };
 
   const handleCancel = () => {
-    setIsEditable(!isEditable);
+    setIsEditable(false);
   };
 
   const handleSave = () => {
-    if (todo && dueDate && startDate && selectedDropDown && activeCollection) {
-      const updatedCollections = collections.map((col) => {
-        if (col.id === activeCollection.id) {
-          return {
-            ...col,
-            todos: col.todos.map((task) =>
-              task.id === activeCollection.editingTodoId // Assuming `editingTodoId` is passed to identify the task
-                ? { ...task, name: todo, start: startDate, end: dueDate, category: selectedDropDown }
-                : task
-            ),
-          };
-        }
-        return col;
-      });
-  
-      const updatedActiveCollection = updatedCollections.find(
-        (col) => col.id === activeCollection.id
-      );
-  
-      setCollections(updatedCollections);
-      setActiveCollection(updatedActiveCollection);
-  
-      // Reset form
-      setTodo("");
-      setStartDate("");
-      setDueDate("");
-      setSelectedDropDown("");
-      setIsEditable(false);
-    } else {
-      alert("Please fill out all fields!");
-    }
+    const updatedCollections = collections.map((col) => {
+      if (col.id === activeCollection.id) {
+        return {
+          ...col,
+          todos: col.todos.map((td) =>
+            td.id === todoinfo.id
+              ? {
+                  ...td,
+                  name: todo,
+                  start: startDate,
+                  end: dueDate,
+                  category: selectedDropDown,
+                }
+              : td
+          ),
+        };
+      }
+      return col;
+    });
+
+    setCollections(updatedCollections);
+
+    const updatedActiveCollection = updatedCollections.find(
+      (col) => col.id === activeCollection.id
+    );
+    setActiveCollection(updatedActiveCollection);
+
+    setIsEditable(false);
   };
-  
+
   if (!isEditable) return null;
 
   return (
-    <div className="inset-0 fixed bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center z-50">
+    <div className="inset-0 fixed bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center w-full h-full z-50">
       <div className="sm:w-[90%] md:w-[700px] flex flex-col bg-white border border-gray-400 rounded-xl p-4 md:px-6">
         <h1 className="text-blue-600 m-2 text-lg md:text-xl">Edit Task</h1>
         <hr className="border-t-2 border-gray-300 my-2" />
@@ -72,7 +72,7 @@ const EditTodo = ({name,start,end,category}) => {
           <input
             type="text"
             className="border rounded border-gray-300 focus:outline-none w-full m-2 p-2 text-sm md:text-base"
-            placeholder="Text"
+            placeholder="Task Name"
             value={todo}
             onChange={(e) => setTodo(e.target.value)}
           />
@@ -99,7 +99,7 @@ const EditTodo = ({name,start,end,category}) => {
         </div>
         <div className="w-full my-3">
           <h4 className="my-3 text-sm md:text-base">Status</h4>
-          <DropDown handleDropDown={handleDrop} />
+          <DropDown selectedOption={selectedDropDown} handleDropDown={handleDrop} />
         </div>
         <hr className="border-t-2 border-gray-300 my-2" />
         <div className="flex justify-end space-x-4">

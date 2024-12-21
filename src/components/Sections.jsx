@@ -19,27 +19,27 @@ const Sections = ({ name, theme, textColor }) => {
   );
 
   return (
-    <div className=" px-4 py-6 space-y-6 sm:space-y-4 text-sm max-lg:text-xs">
+    <div className=" px-4 py-2 space-y-6 sm:space-y-4 text-sm max-lg:text-xs max-lg:w-full  w-1/4  ">
      
-      <div className="flex items-center justify-between ">
+      <div className=" items-center justify-between float-start mb-5 flex ">
         <span
-          className={`${theme} py-2 px-4 rounded-2xl ${textColor} flex items-center gap-2`}
+          className={`${theme} py-1 px-2 rounded-2xl ${textColor} flex items-center gap-2`}
         >
           <FaCircle className="text-[8px]" />
-          <h4 className="font-medium text-sm md:text-base">{name}</h4>
+          <p className="font-medium text-xs">{name}</p>
         </span>
       </div>
 
       
       <button
         onClick={handleNewTask}
-        className={`${theme} ${textColor} px-4 py-2 rounded-xl w-full flex items-center justify-center text-sm font-medium hover:opacity-90`}
+        className={`${theme} ${textColor} px-2 py-1 w-full rounded-md flex items-center justify-center text-xs font-medium hover:opacity-90`}
       >
         + Add New Task
       </button>
 
       
-      <div className="space-y-4 pr-6 border-r-2">
+      <div className="space-y-4 pr-8 border-r-2 h-screen max-lg:border-none ">
         {filteredTodos.map((todo) => (
           <TodoCard
             key={todo.id}

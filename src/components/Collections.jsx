@@ -14,7 +14,7 @@ const Collections = () => {
             onClick={() => {
               setActiveCollection(collection);
             }}
-            className={`my-3 p-2 cursor-pointer flex justify-between items-center rounded ${
+            className={`my-3 p-2 cursor-pointer flex justify-between items-center rounded transition ease-in-out duration-500 ${
               collection.id === activeCollection.id
                 ? "bg-blue-100 hover:bg-blue-300"
                 : "hover:bg-gray-200"
